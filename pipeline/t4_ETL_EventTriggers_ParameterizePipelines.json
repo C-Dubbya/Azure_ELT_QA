@@ -158,18 +158,126 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": [],
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "dbo.@{concat('a_',variables('conv_tablename'))}"
+								},
+								{
+									"name": "Destination",
+									"value": "dbo.@{concat('a_',variables('conv_tablename'))}"
+								}
+							],
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[qa_freqdist]",
+									"storedProcedureParameters": {
+										"dbname": {
+											"type": "String",
+											"value": "testdb"
+										},
+										"schemaname": {
+											"type": "String",
+											"value": "dbo"
+										},
+										"tablename": {
+											"type": "String",
+											"value": {
+												"value": "@concat('c_',variables('conv_tablename'))",
+												"type": "Expression"
+											}
+										}
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
-								"enableStaging": false
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "1"
+											},
+											"sink": {
+												"name": "tab",
+												"type": "Int32",
+												"physicalType": "int"
+											}
+										},
+										{
+											"source": {
+												"name": "2"
+											},
+											"sink": {
+												"name": "col",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "3"
+											},
+											"sink": {
+												"name": "val",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "4"
+											},
+											"sink": {
+												"name": "rec_cnt",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "5"
+											},
+											"sink": {
+												"name": "percentage",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 0,
+												"precision": 2
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
 							},
 							"inputs": [
 								{
 									"referenceName": "t4_outputtable",
+									"type": "DatasetReference",
+									"parameters": {
+										"outputtable": {
+											"value": "@concat('c_',variables('conv_tablename'))",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "t4_outputtable_a",
 									"type": "DatasetReference",
 									"parameters": {
 										"outputtable": {
