@@ -1,0 +1,49 @@
+{
+	"name": "t4_outputtable_a",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"outputtable": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "tab",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "col",
+				"type": "nvarchar"
+			},
+			{
+				"name": "val",
+				"type": "nvarchar"
+			},
+			{
+				"name": "rec_cnt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "percentage",
+				"type": "decimal",
+				"precision": 2,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().outputtable",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
