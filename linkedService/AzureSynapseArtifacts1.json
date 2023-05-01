@@ -1,0 +1,12 @@
+{
+	"name": "AzureSynapseArtifacts1",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSynapseArtifacts",
+		"typeProperties": {
+			"endpoint": "https://synapse-test-rg1.dev.azuresynapse.net",
+			"authentication": "MSI",
+			"workspaceResourceId": "/subscriptions/9000a9d2-31bf-4ab8-9be2-2b4a0e1207f0/resourceGroups/Test_RG1/providers/Microsoft.Synapse/workspaces/synapse-test-rg1"
+		}
+	}
+}
