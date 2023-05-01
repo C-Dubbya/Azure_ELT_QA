@@ -141,8 +141,8 @@
 							}
 						},
 						{
-							"name": "Copy c_ data",
-							"type": "Copy",
+							"name": "qa_freqdist",
+							"type": "SqlServerStoredProcedure",
 							"dependsOn": [
 								{
 									"activity": "Convert Loaded Data - Movies",
@@ -158,135 +158,31 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": [
-								{
-									"name": "Source",
-									"value": "dbo.@{concat('a_',variables('conv_tablename'))}"
-								},
-								{
-									"name": "Destination",
-									"value": "dbo.@{concat('a_',variables('conv_tablename'))}"
-								}
-							],
+							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "AzureSqlSource",
-									"sqlReaderStoredProcedureName": "[dbo].[qa_freqdist]",
-									"storedProcedureParameters": {
-										"dbname": {
-											"type": "String",
-											"value": "testdb"
-										},
-										"schemaname": {
-											"type": "String",
-											"value": "dbo"
-										},
-										"tablename": {
-											"type": "String",
-											"value": {
-												"value": "@concat('c_',variables('conv_tablename'))",
-												"type": "Expression"
-											}
-										}
+								"storedProcedureName": "[dbo].[qa_freqdist]",
+								"storedProcedureParameters": {
+									"dbname": {
+										"value": "testdb",
+										"type": "String"
 									},
-									"queryTimeout": "02:00:00",
-									"partitionOption": "None"
-								},
-								"sink": {
-									"type": "AzureSqlSink",
-									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false,
-									"tableOption": "autoCreate",
-									"disableMetricsCollection": false
-								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"mappings": [
-										{
-											"source": {
-												"name": "1"
-											},
-											"sink": {
-												"name": "tab",
-												"type": "Int32",
-												"physicalType": "int"
-											}
+									"schemaname": {
+										"value": "dbo",
+										"type": "String"
+									},
+									"tablename": {
+										"value": {
+											"value": "@concat('c_',variables('conv_tablename'))",
+											"type": "Expression"
 										},
-										{
-											"source": {
-												"name": "2"
-											},
-											"sink": {
-												"name": "col",
-												"type": "String",
-												"physicalType": "nvarchar"
-											}
-										},
-										{
-											"source": {
-												"name": "3"
-											},
-											"sink": {
-												"name": "val",
-												"type": "String",
-												"physicalType": "nvarchar"
-											}
-										},
-										{
-											"source": {
-												"name": "4"
-											},
-											"sink": {
-												"name": "rec_cnt",
-												"type": "String",
-												"physicalType": "nvarchar"
-											}
-										},
-										{
-											"source": {
-												"name": "5"
-											},
-											"sink": {
-												"name": "percentage",
-												"type": "Decimal",
-												"physicalType": "decimal",
-												"scale": 0,
-												"precision": 2
-											}
-										}
-									],
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
+										"type": "String"
 									}
 								}
 							},
-							"inputs": [
-								{
-									"referenceName": "t4_outputtable",
-									"type": "DatasetReference",
-									"parameters": {
-										"outputtable": {
-											"value": "@concat('c_',variables('conv_tablename'))",
-											"type": "Expression"
-										}
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "t4_outputtable_a",
-									"type": "DatasetReference",
-									"parameters": {
-										"outputtable": {
-											"value": "@concat('a_',variables('conv_tablename'))",
-											"type": "Expression"
-										}
-									}
-								}
-							]
+							"linkedServiceName": {
+								"referenceName": "AzureSqlDatabase1",
+								"type": "LinkedServiceReference"
+							}
 						}
 					]
 				}
