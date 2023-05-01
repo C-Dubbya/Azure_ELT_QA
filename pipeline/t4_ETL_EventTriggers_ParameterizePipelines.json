@@ -141,7 +141,7 @@
 							}
 						},
 						{
-							"name": "qa_freqdist",
+							"name": "qa_freqdist - movies",
 							"type": "SqlServerStoredProcedure",
 							"dependsOn": [
 								{
@@ -233,6 +233,50 @@
 									"computeType": "General"
 								},
 								"traceLevel": "Fine"
+							}
+						},
+						{
+							"name": "qa_freqdist - cars",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "Convert Loaded Data - Cars",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[qa_freqdist]",
+								"storedProcedureParameters": {
+									"dbname": {
+										"value": "testdb",
+										"type": "String"
+									},
+									"schemaname": {
+										"value": "dbo",
+										"type": "String"
+									},
+									"tablename": {
+										"value": {
+											"value": "@concat('c_',variables('conv_tablename'))",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "AzureSqlDatabase1",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
