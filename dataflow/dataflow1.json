@@ -47,7 +47,7 @@
 				"     format: 'table',",
 				"     store: 'sqlserver',",
 				"     schemaName: 'dbo',",
-				"     tableName: 'a_movies',",
+				"     tableName: (concat('a_',$tablename)),",
 				"     insertable: true,",
 				"     updateable: false,",
 				"     deletable: false,",
