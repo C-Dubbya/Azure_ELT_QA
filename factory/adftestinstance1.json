@@ -1,0 +1,9 @@
+{
+	"name": "adftestinstance1",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "bbe2f679-d443-4d26-8190-eaecffbbd633",
+		"tenantId": "fcf67057-50c9-4ad4-98f3-ffca64add9e9"
+	}
+}
