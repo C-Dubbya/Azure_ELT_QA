@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adftestinstance1"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase2_connectionString": {
+			"value": ""
+		},
+		"SqlServer1_connectionString": {
+			"value": ""
+		},
+		"SqlServer_Parmd_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseArtifacts1_properties_typeProperties_endpoint": {
+			"value": "https://synapse-test-rg1.dev.azuresynapse.net"
+		},
+		"filearrived_trigger_properties_t4_ETL_EventTriggers_ParameterizePipelines_parameters_filename": {
+			"value": "@triggerBody().fileName"
+		},
+		"filearrived_trigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/9000a9d2-31bf-4ab8-9be2-2b4a0e1207f0/resourceGroups/Test_RG1/providers/Microsoft.Storage/storageAccounts/teststoragerg1"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
